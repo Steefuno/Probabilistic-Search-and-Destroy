@@ -41,7 +41,7 @@ $P(O_{t}|in(C_{i})*P(in(C_{i}))/P(O_{t})$.\\
 Dividing these the $t+1$ equation by the $t$ equation will give you their multiplicative relationship:\\
 $(P(F(C_{i})|in(C_{i}))\wedge (1$ if $C_{j}$ is $C_{i}$, $0$ otherwise$))*(P(O_{t})/P(O_{t}\land F(C_{j})))$\\
 \\
-So, to update a belief given a new observation:\\
+So, to update a belief given a new observation:
 \begin{enumerate}
 	\item If the new observation was on this cell, multiply the belief by the probability of finding the target in this cell given that the target is in this cell.
 	\item Then, multiply by the previous observations divided by the new observations.
@@ -49,7 +49,8 @@ So, to update a belief given a new observation:\\
 
 \section{Problem 2}
 The probability that the target will be found in cell $C_{i}$ given observations is:\\
-Belief$[C_{i}]*(1 - P(*$Target not found in Cell$_{i}|$ Target is in Cell$_{i})$.
+Belief$[C_{i}]*(1-P($Target not found in Cell$_{i}|$Target is in Cell$_{i}))$
+
 
 \section{Problem 3}
 
