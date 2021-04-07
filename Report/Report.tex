@@ -28,24 +28,23 @@ Assume:\begin{itemize}
 	\item $P(in(C_{i}))$ is the probability that the target is in cell $C_{i}$, $1/$the number of cells.
 	\item $O_{t}$ is Observations at time $t$.
 	\item $N_{i,t}$ is the number of times cell $C_{i}$ has been observed and resulted in a failure at time $t$.
-	\item Belief$[C_{i}]_{t+1}$, is belief that the target is in cell $C_{i}$ after applying a new observation, that the target is not at $C_{j}$. It is calculated by $P(in(C_{i}|O_{t}\land F(C_{j})$.
+	\item Belief$[C_{i}]_{t+1}$, is belief that the target is in cell $C_{i}$ after applying a new observation, that the target is not at $C_{j}$. It is calculated by $P(in(C_{i})|O_{t}\land F(C_{j}))$.
 \end{itemize}
-First, $P(O_{t}\land F(C_{j}|in(C_{i})$ is equivalent to $(P(F(C_{i}|in(C_{i})\wedge N_{i,t+1})+(0\wedge($the number of observations that were not cell $C_{i}))$.\\
+First, for the cell that was just observed as a failure, Belief$[C_{j}]_{t}$ will change to Belief$[C_{j}]_{t+1}$, or $P(in(C_{i})|O_{t+1})$.\\
 \\
-Bayes' Theorem can be used to convert Belief$[C_{i}]_{t+1}$ to\\
-$P(O_{t}\land F(C_{j}|in(C_{i})*P(in(C_{i}))/P(O_{t}\land F(C_{j})$.\\
+This can be converted to $P(O_{t+1}|in(C_{j}))*P(in(C_{j}))/P(O_{t+1})$.\\
 \\
-Bayes' Theorem can be used to convert Belief$[C_{i}]_{t}$ to\\
-$P(O_{t}|in(C_{i})*P(in(C_{i}))/P(O_{t})$.\\
+$P(O_{t+1}|in(C_{j}))$ converts to $P(F(C_{j})|in(C_{j}))^{N_{j}}$ because given that the target is in $C_{j}$, the probabilities of not finding the target in all other cells becomes 1. Then, the probability of not finding the target in $C_{j}$ is $P(F(C_{j})|in(C_{j}))^{N_{j}}$ because the cell is searched $N_{j}$ times and each had $P(F(C_{j})|in(C_{j}))$ to fail.\\
 \\
-Dividing these the $t+1$ equation by the $t$ equation will give you their multiplicative relationship:\\
-$(P(F(C_{i})|in(C_{i}))\wedge (1$ if $C_{j}$ is $C_{i}$, $0$ otherwise$))*(P(O_{t})/P(O_{t}\land F(C_{j})))$\\
+$P(O_{t+1})$ converts to $P(O_{t})*(P(in(C_{j}))*P(F(C_{j})|in(C_{j}))+(1-P(C_{j})))$.\\
+$(P(in(C_{j}))*P(F(C_{j})|in(C_{j}))+(1-P(C_{j})))$ is the probability of either failing a search while the target is in $C_{j}$ or of the target not being in $C_{j}$. $P(O_{t})$ is multiplied by this probability to find the overall probability of the previous events AND the new observed event happening.\\
 \\
-So, to update a belief given a new observation:
-\begin{enumerate}
-	\item If the new observation was on this cell, multiply the belief by the probability of finding the target in this cell given that the target is in this cell.
-	\item Then, multiply by the previous observations divided by the new observations.
-\end{enumerate}
+Dividing Belief$[C_{j}]_{t+1}$ by Belief$[C_{j}]_{t}$ will give the multiplicative difference between Belief$[C_{j}]_{t}$ and Belief$[C_{j}]_{t+1}$.\\
+This is: $P(F(C_{j})|in(C_{j}))^{1}/(P(in(C_{j}))*P(F(C_{j})|in(C_{j}))+(1-P(C_{j})))$\\
+\\
+So, multiplying the current belief by $P(F(C_{j})|in(C_{j}))^{1}/(P(in(C_{j}))*P(F(C_{j})|in(C_{j}))+(1-P(C_{j})))$ will update the belief for cell $C_{j}$.\\
+\\
+This changes the total belief on the map by $\Delta$Belief$[C_{j}]$, so dividing $\Delta$Belief$[C_{j}]$ by the number of cells excluding $C_{j}$ will be the belief all other cells will each increase by.
 
 \section{Problem 2}
 The probability that the target will be found in cell $C_{i}$ given observations is:\\
