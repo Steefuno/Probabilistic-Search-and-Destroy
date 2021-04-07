@@ -105,7 +105,7 @@ class Agent:
 
         # Get the amount of belief to add to all cells except the failed cell
         change_in_belief = new_belief - old_belief
-        distributed_belief = change_in_belief / (self.env_size - 1)
+        distributed_belief = -change_in_belief / (self.env_size - 1)
 
         for (cell_position, cell_data) in self.cells.items():
             if cell_position == failed_search_position:
