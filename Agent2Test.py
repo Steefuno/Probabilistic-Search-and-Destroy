@@ -3,7 +3,7 @@ import environment
 
 score = (0, 0)
 
-for i in range(0, 10):
+for i in range(0, 50):
     env = environment.Environment()
     agent = Agent2.Agent(env)
     agent.run()
