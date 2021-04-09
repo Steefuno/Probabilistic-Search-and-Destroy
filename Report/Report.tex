@@ -51,9 +51,12 @@ The probability that the target will be found in cell $C_{i}$ given observations
 Belief$[C_{i}]*(1-P($Target not found in Cell$_{i}|$Target is in Cell$_{i}))$
 
 \section{Problem 3}
+Agent 1 had an average score of \\
 Agent 2 had an average score of 115147.
 
 \section{Problem 4}
-
+For the improved agent, the probabilities were based on Agent 1, so querying cells that had the highest probability of containing the target. To improved upon this, if a cell was queried and return False (so the target was not found), it would be queried at least one more time. After being queried twice, if the cell still returned False, the agent checks the terrain and makes a decision from there. For the forest and maze of cave terrains, the cell is queried again, and if it fails again the cell is queried one last time, for a total of four. \\
+This was done because the forest and mave of cave terrains are more likely to return false negatives, so they are checked the hardest. Once the cell has been queried two or four times (and returns False each time), the probabilities are updated, and the agent searches again. \\
+Given all the resources, to make the agent even better, when a cell is going to be searched, it would be queried enough times to make it statistically improbable that the target is contained in that cell. By doing so, cells could be completely removed from the realm of possibility so the agent could essentially shrink the environment, giving it less cells to consider.
 
 \end{document}
