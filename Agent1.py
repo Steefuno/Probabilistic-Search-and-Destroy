@@ -93,7 +93,15 @@ class Agent:
 
         # Get the data to calculate the new belief of the failed cell
         old_belief = cell_data["belief"]
-        new_belief = 0
+        fail_probability = cell_data["fail_probability"]
+        target_probability = 1 / self.env_size
+        not_target_probability = 1 - target_probability
+
+        # Get the amount of belief to assign to the failed cell
+        new_belief = (
+            (old_belief * fail_probability) /
+            ((fail_probability * target_probability) + (not_target_probability))
+        )
 
         # Get the amount of belief to add to all cells except the failed cell
         change_in_belief = new_belief - old_belief

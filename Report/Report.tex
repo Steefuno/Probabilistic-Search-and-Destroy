@@ -53,8 +53,9 @@ The probability that the target will be found in cell $C_{i}$ given observations
 Belief$[C_{i}]*(1-P($Target not found in Cell$_{i}|$Target is in Cell$_{i}))$
 
 \section{Problem 3}
-Agent 1 had an average score of \\
-Agent 2 had an average score of 115147.
+Agent 1 had an average score of 49560.93.\\
+Agent 2 had an average score of 102278.5.\\
+The Improved Agent had an average score of 37612.38.
 
 \section{Problem 4}
 For the improved agent, the probabilities were based on Agent 2, so querying cells that had the highest probability of finding the target. To improved upon this, if a cell was queried and return False (so the target was not found), it would be queried at least one more time. After being queried twice, if the cell still returned False, the agent checks the terrain and makes a decision from there. For the forest and maze of cave terrains, the cell is queried again, and if it fails again the cell is queried one last time, for a total of four. \\
