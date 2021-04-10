@@ -48,8 +48,8 @@ class Agent:
         best_cell = (None, -1, None) # (position, find_probability, distance from agent)
         # For each cell, find cell with the best belief
         for (cell_position, cell_data) in self.cells.items():
-            # Get the probability that searching the new cell will yield the target
-            find_probability = cell_data["belief"] * (1 - self.cells[cell_position]["fail_probability"])
+            # Get the probability that searching the new cell will contain the target
+            find_probability = cell_data["belief"]
             # If the best cell's belief matches with another, get closest
             if find_probability == best_cell[1]:
                 # If the best cell's distance is not stored, calculate and store
